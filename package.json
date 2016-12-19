@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "db:create": "createdb dove-todo",
+    "db:drop": "dropdb dove-todo",
+    "db:setup": "psql dove-todo < ./schema.sql"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
