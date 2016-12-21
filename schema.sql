@@ -1,26 +1,25 @@
 
-DROP TABLE IF EXISTS "List";
+DROP TABLE IF EXISTS "list";
 
-CREATE TABLE "List" (
+CREATE TABLE "list" (
   id SERIAL,
   name CHAR(12) DEFAULT NULL,
   complete BOOLEAN DEFAULT false,
   PRIMARY KEY ( id )
 );
 
-DROP TABLE IF EXISTS "Todo";
+DROP TABLE IF EXISTS "todo";
 
-CREATE TABLE "Todo" (
+CREATE TABLE "todo" (
   list_id INTEGER DEFAULT NULL,
   description VARCHAR DEFAULT NULL,
   complete BOOLEAN DEFAULT false,
   deadline TIMESTAMP DEFAULT NULL,
-  PRIMARY KEY ( "list_id" )
 );
 
-ALTER TABLE "Todo" ADD FOREIGN KEY (list_id) REFERENCES "List" ("id");
+ALTER TABLE "todo" ADD FOREIGN KEY (list_id) REFERENCES "list" ("id");
 
- INSERT INTO "List" ( name ) VALUES
- ('Poop');
- INSERT INTO "Todo" (list_id,description,deadline) VALUES
- ((SELECT id FROM "List" LIMIT 1),'Pass gas',now());
+ INSERT INTO "list" ( name ) VALUES
+ ('stuff');
+ INSERT INTO "todo" (list_id,description,deadline) VALUES
+ ((SELECT id FROM "list" LIMIT 1),'do things',now());

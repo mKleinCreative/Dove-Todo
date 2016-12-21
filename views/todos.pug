@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  div.todoBox
+    ol
+      each val in todos
+        li #{JSON.stringify(val)}

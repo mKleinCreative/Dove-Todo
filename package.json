@@ -9,6 +9,7 @@
     "db:setup": "psql dove-todo < ./schema.sql"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
