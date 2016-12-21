@@ -1,0 +1,8 @@
+
+block listTitle
+  div.listBox
+    ul
+      each list in lists
+        li= list.name
+        li #{list.complete}
+        block content

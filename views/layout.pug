@@ -1,7 +1,10 @@
 doctype html
 html
   head
-    title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    form.createList
+      input(type="text", placeholder="Create a List HERE!")
+      input(type="submit")
+    h1
+      block content

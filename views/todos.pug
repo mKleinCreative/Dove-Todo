@@ -1,9 +1,17 @@
 extends layout
 
 block content
-  div.todoBox
-    ol
-      each todo in todos
-        li= todo.description
-        li
-          #{todo.description} is the description. It is due on #{todo.deadline}
+  .todoBox
+    each list in lists
+      .list
+        h4= list.name
+          input(type="checkbox" checked=list.complete)
+
+        .todo
+          each todo in list.todos
+            .description= todo.description
+              input(type="checkbox" checked=todo.complete)
+            .deadline= todo.deadline
+        form
+          input(type="text", placeholder="Make a To-do HERE!")
+          input(type="submit")
