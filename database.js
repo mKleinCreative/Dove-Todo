@@ -15,9 +15,6 @@ function getAllLists(request, response, next) {
   return db.many(' select * from list ')
 }
 
-// function getAllTodos(request, response, next) {
-//   return db.many(' select * from todo ')
-// }
 //     v v v THIS ONE WORKS WOOOO v v v
 function getAllTodos(request, response, next) {
   return db.many(
@@ -32,22 +29,6 @@ function getAllTodos(request, response, next) {
     ORDER BY
     id asc`)
 }
-// function getAllTodos(request, response, next) {
-//   return db.many(
-//   `SELECT
-// 	  *
-//    FROM
-//     list,
-//     todo,
-//    WHERE
-//     list.id,
-//     =
-//     todo.list_id
-//    AND
-//     list.name = todo.list_id
-//     ORDER BY
-//     id asc`)
-// }
 
 function getSingleList(request, response, next) {
   var listID = parseInt(request.params.id);
