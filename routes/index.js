@@ -7,6 +7,14 @@ var db = require('../database.js');
 router.get('/', function(request, response) {
   db.getAllTodos()
     .then( lists => {
+      lists = lists.reduce((result, todoItem) => {
+        if(result[todoItem.list_id]) {
+          result[todoItem.list_id].push(todoItem)
+        } else {
+          result[todoItem.list_id] = [todoItem]
+        }
+        return result
+      }, {})
       response.render('index', { lists })
     })
     .catch( error => {
