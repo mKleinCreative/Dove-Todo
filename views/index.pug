@@ -3,7 +3,6 @@ extends layout
 block content
   div.listContainer
     ol
-      each list.id in lists
+      each list in lists
         div.listBox
-          li #{(list.description)}
-          li #{(list.id)}
+          li #{JSON.stringify(list)}
