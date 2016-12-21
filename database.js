@@ -30,19 +30,34 @@ function getAllTodos(request, response, next) {
     id asc`)
 }
 
-function getSingleList(request, response, next) {
+function getSingleList(request, response ) {
   var listID = parseInt(request.params.id);
-  db.one(
+  return db.one(
   `SELECT
     *
    FROM
     list
    WHERE
-    id = $1`, listId)
-  .then(function (data) {
-    response.status(200)
-  });
+    id = $1`, listID)
 }
+
+function getTodosInList(listID) {
+  return db.many(`
+    SELECT *
+    FROM todo
+    WHERE
+      list_id = $1`, listID)
+}
+
+// {
+//   list_id, title
+//   todos: [
+//     { name, comp, description },
+//     { name, comp, description },
+//     { name, comp, description }
+//   ]
+// }
+
 
 function getTodosFromList(request, response, next) {
   var todoId = parseInt(request.params.id);
@@ -143,6 +158,7 @@ module.exports = {
   getAllTodos,
   getSingleList,
   getTodosFromList,
+  getTodosInList,
   createTodo,
   createList,
   updateTodo,

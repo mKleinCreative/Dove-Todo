@@ -32,4 +32,15 @@ router.get('/todos', function(request, response) {
     })
 });
 
+router.get('/list/:id', function(request, response) {
+  const listID = request.params.id
+  db.getTodosInList(listID)
+    .then( todos => {
+      response.render('todos', { todos })
+    })
+   .catch( error => {
+      response.render('error')
+    })
+});
+
 module.exports = router;
