@@ -3,5 +3,7 @@ extends layout
 block content
   div.todoBox
     ol
-      each val in todos
-        li #{JSON.stringify(val)}
+      each todo in todos
+        li= todo.description
+        li
+          #{todo.description} is the description. It is due on #{todo.deadline}
