@@ -4,7 +4,6 @@ var router = express.Router();
 var db = require('../database.js');
 
 const formatLists = results => {
-  console.log('lists', results   );
   const lists = results.reduce( (memo, result) => {
     if( ! memo.find( item => item.id === result.id ) ) {
       memo.push({
@@ -51,16 +50,40 @@ router.post('/makeTodo', (request, response) => {
   const list_id = request.body.listIdForTodo
   const description = request.body.todoDesc
   const complete = false
-  console.log('description', description);
-
   db.createTodo(list_id, description, complete)
     .then( list => {
-      console.log('lists', list );
       response.redirect( '/todos' )
     })
     .catch( error => {
       console.log('error', error );
 
+      response.render('error')
+    })
+});
+
+// DELETE THE list
+
+router.post('/deletelist/:id', (request, response) => {
+  console.log('But did I delete?', request.params.id);
+  db.removeList(request.params.id)
+    .then( list => {
+      response.redirect( '/todos' )
+    })
+    .catch( error => {
+      console.log('error', error );
+      response.render('error')
+    })
+});
+
+// DELETE single ToDo
+router.post('/deletetodo/:todo_id', (request, response) => {
+  console.log('But did I delete?', request.params.todo_id);
+  db.removeTodo(request.params.todo_id)
+    .then( list => {
+      response.redirect( '/todos' )
+    })
+    .catch( error => {
+      console.log('error', error );
       response.render('error')
     })
 });

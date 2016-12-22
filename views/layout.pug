@@ -3,9 +3,9 @@ html
   head
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    form.createList(method='POST', action='/todos/makeList')
+    form.createNewList(method='POST', action='/todos/makeList')
       input(type="text", placeholder="Create a List HERE!", name="title")
       input(type="submit")
-    
+
     h1
       block content
