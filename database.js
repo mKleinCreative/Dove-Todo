@@ -49,15 +49,6 @@ function getTodosInList(listID) {
     list_id = $1`, listID)
 }
 
-// {
-//   list_id, title
-//   todos: [
-//     { name, comp, description },
-//     { name, comp, description },
-//     { name, comp, description }
-//   ]
-// }
-
 // Grabs all information from everything.
 function getTodosFromList(request, response, next) {
   var todoId = parseInt(request.params.id);
@@ -75,12 +66,13 @@ function getTodosFromList(request, response, next) {
 }
 
 // Creates a single todo
-function createTodo(list_id, description, complete, deadline) {
+function createTodo(list_id, description, complete) {
   return db.one(
     `INSERT INTO
-      todo
+      todo ( list_id, description, complete )
      VALUES
-      ( $1, $2, $3, $4 )`, [ list_id, description, false, deadline ]
+      ( $1, $2, $3 )
+     RETURNING list_id`, [ list_id, description, false ]
   )
 }
 
@@ -96,13 +88,13 @@ function createList(name) {
 }
 
 // Updates todos, yay
-function updateTodo( description, deadline ) {
+function updateTodo( description ) {
   return db.any(
   `UPDATE
     todo
    SET
-    description=$2,
-    deadline=$3`, [ description, deadline ]
+    description=$2
+   WHERE list_id=$1`, [ description ]
 )}
 
 // changes the complete value of the todo.
@@ -139,12 +131,12 @@ function updateListTitle( id, title) {
 }
 
 // removes todo.
-function removeTodo( id ) {
+function removeTodo( todo_id ) {
   return db.none(
     `DELETE FROM
       todo
      WHERE
-      id=$1`, [id]
+      todo_id=$1`, [todo_id]
   )
 }
 
@@ -160,10 +152,9 @@ function removeList( id ) {
 
 function getLists() {
   return db.any(
-    "select * from list left outer join todo on list.id=todo.list_id order by id asc"
+    "select * from list left outer join todo on list.id=todo.list_id order by list.id asc"
   )
 }
-
 module.exports = {
   getAllLists,
   getAllTodos,

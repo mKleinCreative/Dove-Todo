@@ -6,12 +6,16 @@ block content
       .list
         h4= list.name
           input(type="checkbox" checked=list.complete)
+          //- form(method='POST' action=`/todos/deletelist/${val.id}`)
+          //-   input(type='hidden' value=`${val.name}` name='title')
+          //-   button(type='submit') Bring Death!
 
         .todo
           each todo in list.todos
             .description= todo.description
               input(type="checkbox" checked=todo.complete)
-            .deadline= todo.deadline
-        form
-          input(type="text", placeholder="Make a To-do HERE!")
-          input(type="submit")
+              button(type="submit") X
+        form.createNewTodo(method='POST', action='/todos/makeTodo')
+          input(type="hidden" value=`${list.todo_id}` name='listIdForTodo')
+          input(type="text", placeholder="Make a To-do HERE!", name="todoDesc")
+          button(type="submit") Make Tew Dew
