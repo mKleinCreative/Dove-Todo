@@ -2,10 +2,11 @@ doctype html
 html
   head
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link( href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet")
   body
     form.createNewList(method='POST', action='/todos/makeList')
       input(type="text", placeholder="Create a List HERE!", name="title")
-      input(type="submit")
+      button(type="submit") Create List
 
     h1
       block content

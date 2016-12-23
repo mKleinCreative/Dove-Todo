@@ -9,16 +9,18 @@ block content
           form.listDelete(method='POST' action=`/todos/deletelist/${list.id}` )
             input(type='hidden' value=`${list.name}` name='title' )
             input(type='hidden' value=`${list.complete}` )
-            button(type='submit') Bring Death!
+            button(type='submit') Delete List
 
         .todo
           each todo in list.todos
-            .description= todo.description
+            .check
               input(type="checkbox" checked=todo.complete)
-            form.todoDelete(method='POST' action=`/todos/deletetodo/${todo.todo_id}` )
-              input(type='hidden' value=`${todo.description}` name='todo_title' )
-              input(type='hidden' value=`${todo.complete}` )
-              button(type="submit") Delete ToDo
+            .description= todo.description
+            .delTodo
+              form(method='POST' action=`/todos/deletetodo/${todo.todo_id}` )
+                input(type='hidden' value=`${todo.description}` name='todo_title' )
+                input(type='hidden' value=`${todo.complete}` )
+                button(type="submit") Delete ToDo
         form.createNewTodo(method='POST' action='/todos/makeTodo')
           input(type="hidden" value=`${list.id}` name='listIdForTodo')
           input(type="text" placeholder="Make a To-do HERE!" name="todoDesc")

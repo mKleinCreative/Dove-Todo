@@ -1,8 +1,83 @@
 body {
+
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+h1{
+    background-image:url("https://i.stack.imgur.com/Ux7SR.png");
+    z-index: -1;
+}
 a {
   color: #00B7FF;
+}
+.todoBox{
+  display:-webkit-flex;
+  display:flex;
+  -webkit-flex-direction:column;
+  flex-direction:column;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+  padding: 1%;
+  border-radius: 2%;
+  /*-webkit-box-shadow: inset 10px 10px 98px -25px rgba(0,0,0,0.18);
+  -moz-box-shadow: inset 10px 10px 98px -25px rgba(0,0,0,0.18);
+  box-shadow: inset 10px 10px 98px -25px rgba(0,0,0,0.18);*/
+}
+
+.list{
+  background-color: #F8FFEA;
+  font-size: 2em;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-flex-direction:column;
+  flex-direction:column;
+  justify-content: center;
+  text-align: center;
+  padding: 4%;
+  margin-bottom: 20px;
+  border-radius: 2%;
+  -webkit-box-shadow: inset 10px 10px 98px -25px rgba(0,0,0,0.38);
+  -moz-box-shadow: inset 10px 10px 98px -25px rgba(0,0,0,0.38);
+  box-shadow: inset 10px 10px 98px -25px rgba(0,0,0,0.38);
+}
+
+h4{font-family: 'Gloria Hallelujah', cursive;
+  margin: 3%;
+}
+
+.todo{
+  font-size: .5em;
+  flex-direction:column;
+  justify-content: center;
+  text-align: left;
+  width: 70%;
+  height: 10%;
+  align-self: center;
+  padding: 20px;
+  /*-webkit-box-shadow: inset 10px 10px 41px -14px rgba(0,0,0,0.5);
+-moz-box-shadow: inset 10px 10px 41px -14px rgba(0,0,0,0.5);
+box-shadow: inset 10px 10px 41px -14px rgba(0,0,0,0.5);*/
+}
+
+.description{
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align: left;
+  z-index: 10;
+  padding-left: 30px;
+}
+
+.check{
+    /*text-align: right;*/
+    /*height: 20px;*/
+    z-index: 11;
+}
+
+.delTodo{
+  text-align: right;
+  border-bottom: 1px black solid;
+  margin-bottom: 20px;
+}
+button{
+  font-family: 'Gloria Hallelujah', cursive;
 }
